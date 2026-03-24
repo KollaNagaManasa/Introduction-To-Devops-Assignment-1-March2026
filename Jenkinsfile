@@ -3,7 +3,7 @@ pipeline {
 
   environment {
     REGISTRY_CREDENTIALS = credentials('dockerhub-credentials-id') // set in Jenkins
-    DOCKER_IMAGE = "2025ht66001/aceest-fitness"
+    DOCKER_IMAGE = "gym-app"
     DOCKER_TAG = "${env.BUILD_NUMBER}"
     KUBE_CONTEXT = "minikube" // or your kube context
     SONARQUBE_SERVER = 'sonarqube-server-name' // Jenkins global tool
