@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
         - name: api
-          image: gcr.io/cloudshell-10937/aceest-fitness
+          image: gym-app
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
