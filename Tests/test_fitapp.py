@@ -1,5 +1,5 @@
 import json
-from app.app import app
+from app import app
 
 def test_health():
     app = create_app()
