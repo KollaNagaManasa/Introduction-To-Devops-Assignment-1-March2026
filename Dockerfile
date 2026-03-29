@@ -1,30 +1,12 @@
-name: CI/CD Pipeline (Jenkins Equivalent)
+FROM python:3.12-slim
 
-on:
-  push:
-    branches: ["main"]
+WORKDIR /app
 
-jobs:
-  pipeline:
-    runs-on: ubuntu-latest
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-    steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+COPY . .
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.12'
+EXPOSE 5000
 
-    - name: Install Dependencies
-      run: pip install -r requirements.txt
-
-    - name: Run Tests
-      run: pytest || true
-
-    - name: Build Docker Image
-      run: docker build -t gym-app .
-
-    - name: Run Container Tests
-      run: docker run gym-app pytest || true
+CMD ["python", "app.py"]
