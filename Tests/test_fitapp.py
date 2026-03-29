@@ -4,7 +4,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 import json
-from app import app
+from app.app import app
 
 def test_health():
     client = app.test_client()
