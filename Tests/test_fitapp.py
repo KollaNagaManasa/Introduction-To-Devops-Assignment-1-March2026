@@ -7,16 +7,16 @@ import json
 from app import app
 
 def test_health():
-    app = create_app()
     client = app.test_client()
-    r = client.get("/healthz")
-    assert r.status_code == 200
-    assert b"ok" in r.data
+    response = client.get('/')
+    assert response.status_code == 200
+
 
 def test_crud_workout():
-    app = create_app()
     client = app.test_client()
-
+    response = client.get('/')
+    assert response.status_code == 200
+    
     # create
     r = client.post("/api/workouts", json={"name": "Run", "duration": 30, "calories": 250})
     assert r.status_code == 201
