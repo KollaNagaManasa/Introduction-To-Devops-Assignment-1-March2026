@@ -9,11 +9,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
     - name: Build Docker Image
       run: docker build -t gym-app .
 
     - name: Run tests inside container
-      run: docker run gym-app pytest tests/
+      run: docker run gym-app pytest
