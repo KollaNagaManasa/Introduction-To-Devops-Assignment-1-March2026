@@ -13,7 +13,7 @@ RUN pip install --upgrade pip \
 # Copy application
 COPY . /app
 
-EXPOSE 5000
+EXPOSE 8080
 
 # Run the app with gunicorn for production-like server
-CMD ["gunicorn", "app:create_app()", "-b", "0.0.0.0:5000", "--workers", "2"]
+CMD ["gunicorn", "-b", "0.0.0.0:8080", "app.app:create_app()"]
