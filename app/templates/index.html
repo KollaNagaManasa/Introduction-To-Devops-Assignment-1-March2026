@@ -11,7 +11,6 @@
 :root {
   --gold:#d4af37;
   --dark:#121212;
-  --card:#1e1e1e;
 }
 
 body {
@@ -25,65 +24,86 @@ body {
   background:linear-gradient(90deg,#d4af37,#f5d76e)!important;
   box-shadow:0 2px 10px rgba(0,0,0,0.6);
 }
-.navbar-brand { font-weight:900; letter-spacing:2px; }
+.navbar-brand {
+  font-weight:900;
+  letter-spacing:2px;
+}
 
 /* HERO */
 .hero {
-  background:radial-gradient(circle at top,#222,#000);
+  background: radial-gradient(circle at center, #1f1f1f, #000);
   text-align:center;
-  padding:40px;
+  padding:60px 20px;
+}
+.hero h1 {
+  font-size:3rem;
+  font-weight:900;
+  color:var(--gold);
 }
 
 /* CARD */
 .card {
-  background:rgba(30,30,30,0.9);
+  background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
   border-radius:12px;
-  border:none;
+  color:#fff;
   transition:0.3s;
 }
 .card:hover {
-  transform:translateY(-5px);
-  box-shadow:0 10px 25px rgba(0,0,0,0.6);
+  transform:translateY(-6px);
+  box-shadow:0 15px 30px rgba(0,0,0,0.8);
 }
+.card p { color:#ccc; }
+.card h5 { color:#fff; }
 
 /* BUTTON */
 .btn-gold {
   background:linear-gradient(90deg,#d4af37,#f5d76e);
   border:none;
   font-weight:bold;
+  border-radius:8px;
+  box-shadow:0 5px 15px rgba(212,175,55,0.4);
 }
 .btn-gold:hover {
   transform:scale(1.05);
+  box-shadow:0 8px 25px rgba(212,175,55,0.6);
 }
 
-/* SECTION TITLE */
+/* SECTION */
 .section-title {
   color:var(--gold);
   font-weight:800;
   margin-bottom:20px;
+  text-shadow:0 0 10px rgba(212,175,55,0.6);
+}
+
+/* PROGRAM CARD */
+.program {
+  border-left:4px solid var(--gold);
 }
 
 /* LIST */
 .list-group-item {
   background:#222;
   border:none;
-  margin-bottom:5px;
+  margin-bottom:6px;
   border-radius:6px;
 }
-
-/* METRIC */
-.metric {
-  text-align:center;
-}
-.metric h2 { color:var(--gold); }
-
-/* PROGRAM CARD */
-.program {
-  border-left:4px solid var(--gold);
-  cursor:pointer;
+.list-group-item:hover {
+  background:#333;
 }
 
-/* ANIMATION */
+/* INPUT */
+.form-control {
+  background:#2a2a2a;
+  border:1px solid #444;
+  color:#fff;
+}
+.form-control:focus {
+  border-color:var(--gold);
+  box-shadow:0 0 8px rgba(212,175,55,0.5);
+}
+
+/* GLOBAL */
 * { transition:0.2s ease-in-out; }
 
 </style>
@@ -100,22 +120,22 @@ body {
 
 <!-- HERO -->
 <div class="hero">
-<h1 style="color:var(--gold)">ACEest FUNCTIONAL FITNESS</h1>
-<p class="text-secondary">Full Dashboard UI</p>
+<h1>ACEest FUNCTIONAL FITNESS</h1>
+<p class="text-secondary">Premium Dashboard UI</p>
 </div>
 
-<div class="container py-4">
+<div class="container py-5">
 
 <!-- PROGRAMS -->
 <h4 class="section-title">🏋️ Programs</h4>
-<div class="row g-3" id="programs"></div>
+<div class="row g-4" id="programs"></div>
 
 <!-- CALCULATOR -->
 <h4 class="section-title mt-5">🔥 Calorie Calculator</h4>
-<div class="card p-3" style="max-width:400px;">
-<input id="weight" class="form-control mb-2" placeholder="Weight">
-<select id="program" class="form-select mb-2">
-<option value="">Select</option>
+<div class="card p-4" style="max-width:420px;">
+<input id="weight" class="form-control mb-3" placeholder="Weight (kg)">
+<select id="program" class="form-control mb-3">
+<option value="">Select Program</option>
 <option value="FL">Fat Loss</option>
 <option value="MG">Muscle Gain</option>
 <option value="BG">Beginner</option>
@@ -126,32 +146,32 @@ body {
 
 <!-- WORKOUTS -->
 <h4 class="section-title mt-5">📋 Workouts</h4>
-<div class="row">
+<div class="row g-4">
 <div class="col-md-6">
 <ul id="workouts" class="list-group"></ul>
 </div>
 
 <div class="col-md-6">
-<div class="card p-3">
+<div class="card p-4">
 <input id="wname" class="form-control mb-2" placeholder="Workout name">
-<input id="wdur" class="form-control mb-2" placeholder="Duration">
-<button class="btn btn-gold w-100" onclick="addWorkout()">Add</button>
+<input id="wdur" class="form-control mb-3" placeholder="Duration">
+<button class="btn btn-gold w-100" onclick="addWorkout()">Add Workout</button>
 </div>
 </div>
 </div>
 
 <!-- MEMBERS -->
 <h4 class="section-title mt-5">👥 Members</h4>
-<div class="row">
+<div class="row g-4">
 <div class="col-md-6">
 <ul id="members" class="list-group"></ul>
 </div>
 
 <div class="col-md-6">
-<div class="card p-3">
+<div class="card p-4">
 <input id="mname" class="form-control mb-2" placeholder="Name">
-<input id="memail" class="form-control mb-2" placeholder="Email">
-<button class="btn btn-gold w-100" onclick="addMember()">Add</button>
+<input id="memail" class="form-control mb-3" placeholder="Email">
+<button class="btn btn-gold w-100" onclick="addMember()">Register Member</button>
 </div>
 </div>
 </div>
@@ -165,6 +185,7 @@ async function loadPrograms(){
 let res=await fetch('/programs');
 let data=await res.json();
 let div=document.getElementById('programs');
+div.innerHTML='';
 
 Object.entries(data).forEach(([k,v])=>{
 div.innerHTML+=`
@@ -189,7 +210,7 @@ body:JSON.stringify({weight_kg:w,program_code:p})
 });
 
 let d=await res.json();
-document.getElementById('result').innerHTML=`<h3>${d.estimated_daily_kcal} kcal</h3>`;
+document.getElementById('result').innerHTML=`<h3>${d.estimated_daily_kcal} kcal/day</h3>`;
 }
 
 // WORKOUTS
@@ -200,7 +221,7 @@ let ul=document.getElementById('workouts');
 ul.innerHTML='';
 
 data.forEach(w=>{
-ul.innerHTML+=`<li class="list-group-item">${w.name} - ${w.duration_minutes}</li>`;
+ul.innerHTML+=`<li class="list-group-item">${w.name} - ${w.duration_minutes} min</li>`;
 });
 }
 
