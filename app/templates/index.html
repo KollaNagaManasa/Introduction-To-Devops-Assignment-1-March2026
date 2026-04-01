@@ -350,6 +350,10 @@ table {
   font-size: 14px;
 }
 
+#program-cards:empty {
+  display: none;
+}
+
   </style>
 </head>
 
@@ -408,8 +412,7 @@ margin-right:10px;
     <h4> <b>🏋️Training Programs</b></h4>
     <p>Explore structured workout and nutrition plans tailored for your fitness goals.</p>
   </div>
-
-<section id="programs-section" class="section-card">
+<section id="programs-section">
   <div class="row g-4">
       
 
@@ -444,10 +447,7 @@ margin-right:10px;
     </div>-->
 
   </div>
-</section>
 
-  <div class="row g-3" id="program-cards"></div>
-</section>
     <!-- Program detail panel -->
     <div class="row mt-3" id="program-detail-panel" style="display:none!important;">
       <div class="col-md-6">
