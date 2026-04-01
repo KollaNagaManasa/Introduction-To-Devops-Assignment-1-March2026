@@ -1,228 +1,379 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <div class="top-links">
+  <a href="#programs-section"><i class="fa-solid fa-dumbbell"></i> Programs</a>
+  <a href="#calculator-section"><i class="fa-solid fa-fire"></i> Calories</a>
+  <a href="#members-section"><i class="fa-solid fa-users"></i> Members</a>
+</div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+   
+   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>ACEest Fitness & Gym</title>
   <link rel="icon" href="/favicon.ico" type="image/svg+xml">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
-    :root {
-  --gold: #e6c15a;
-  --gold-soft: #f5d97a;
-  --dark-bg: #070707;
-  --card-bg: #121212;
-  --border-col: #262626;
-  --text: #f1f1f1;
-  --muted: #8a8a8a;
-
-  --fl-color: #ff6b6b;
-  --mg-color: #4cd964;
-  --bg-color: #4da3ff;
+  /* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --bg: #f3f4f6;
+  --text: #111827;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --primary: #3b82f6;
 }
 
-/* GLOBAL */
+/* =========================
+   GLOBAL
+========================= */
 body {
-  background: radial-gradient(circle at top, #111 0%, #050505 100%);
+  background: var(--bg);
   color: var(--text);
-  font-family: 'Inter', 'Segoe UI', sans-serif;
-  font-size: 14px;
-  letter-spacing: 0.2px;
+  transition: all 0.3s ease;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-/* NAVBAR */
-.navbar {
-  background: linear-gradient(90deg, var(--gold), var(--gold-soft)) !important;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.5);
+/* =========================
+   HERO (TOP BLACK SECTION)
+========================= */
+.hero {
+  background: var(--card);
+  color: var(--text);
+  padding: 30px;
+  border-radius: 12px;
+  text-align: center;
 }
-.navbar-brand {
-  color: #000 !important;
-  font-weight: 900;
-  font-size: 1.3rem;
+
+/* =========================
+   CARDS
+========================= */
+.card {
+  background: var(--card);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
 }
+
+/* =========================
+   INPUTS
+========================= */
+input, textarea, select {
+  background: var(--card) !important;
+  color: var(--text) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+::placeholder {
+  color: #9ca3af;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+button, .btn {
+  background: var(--primary);
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 16px;
+  border: none;
+  transition: 0.2s;
+}
+
+button:hover {
+  opacity: 0.9;
+}
+
+/* =========================
+   NAVBAR / SIDEBAR
+========================= */
+.navbar, .sidebar {
+  background: var(--card);
+  border-bottom: 1px solid var(--border);
+}
+
 .nav-link {
-  color: #222 !important;
-  font-weight: 600;
-}
-.nav-link:hover {
-  color: #000 !important;
+  color: var(--text) !important;
 }
 
-/* HERO */
-.text-center.py-4 {
-  background: radial-gradient(circle, #111, #050505) !important;
-  border-bottom: 1px solid var(--border-col) !important;
-}
-.text-center h1 {
-  color: var(--gold);
-  font-size: 26px;
-  font-weight: 800;
-  letter-spacing: 1px;
+/* =========================
+   TABLE (API)
+========================= */
+table {
+  background: var(--card);
+  color: var(--text);
 }
 
-/* SECTION TITLE */
-.section-title {
-  color: var(--gold-soft);
-  font-weight: 600;
-  border-bottom: 1px solid var(--border-col);
-  padding-bottom: 6px;
-  margin-bottom: 16px;
-  font-size: 15px;
+.dark-mode table {
+  background: #1f2937;
+}
+
+/* =========================
+   SMOOTH UI
+========================= */
+* {
+  transition: background 0.3s, color 0.3s;
+}
+
+/* =========================
+   METRIC CARDS
+========================= */
+.metric-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+/* Icon */
+.metric-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+/* Value */
+.metric-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--primary);
+}
+
+/* Label */
+.metric-label {
+  font-size: 16px;
+  margin-top: 5px;
+}
+
+/* Subtext */
+.metric-sub {
+  color: #9ca3af;
+}
+
+.metric-card {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 15px;
+  padding: 25px;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.metric-icon {
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.metric-value {
+  font-size: 30px;
+  font-weight: bold;
+  color: #3b82f6;
+}
+
+.metric-label {
+  font-size: 16px;
+}
+
+.metric-sub {
+  color: #777;
+}
+
+.top-links {
+  display: flex;
+  gap: 20px;
+  padding: 10px 15px;
+  background: #ffffff;
+  border-radius: 10px;
+  margin: 10px;
+  width: fit-content;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.top-links a {
+  text-decoration: none;
+  color: #374151;
+  font-weight: 500;
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.top-links a:hover {
+  background: #f3f4f6;
+  color: #3b82f6;
+}
+
+.top-links i {
+  margin-right: 6px;
+}
+
+/* =========================
+   INFO SECTION
+========================= */
+.info-section {
+  margin-bottom: 25px;
 }
 
 /* CARD */
-.card {
-  background: linear-gradient(145deg, #121212, #1a1a1a);
-  border-radius: 10px;
-  border: 1px solid var(--border-col);
-  color: var(--text);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
-  transition: all 0.25s ease;
-}
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+.info-card {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
 
-/* CARD HEADER */
-.card-header {
-  background: #181818;
-  color: var(--gold);
-  font-weight: 600;
-  font-size: 13px;
-  border-bottom: 1px solid var(--border-col);
+/* ICON */
+.info-icon {
+  font-size: 40px;
 }
 
-/* INPUT */
-.form-control,
-.form-select {
-  background: #151515;
-  border: 1px solid var(--border-col);
-  color: var(--text);
-  font-size: 13px;
-  border-radius: 6px;
-  padding: 8px;
-}
-
-.form-control::placeholder {
-  color: var(--muted);
-}
-
-.form-control:focus,
-.form-select:focus {
-  border-color: var(--gold);
-  box-shadow: 0 0 8px rgba(230,193,90,0.5);
-  background: #1c1c1c;
-  color: #fff;
-}
-
-/* BUTTON */
-.btn-gold {
-  background: linear-gradient(90deg, var(--gold), var(--gold-soft));
-  color: #000;
-  font-weight: 700;
-  border-radius: 6px;
-  padding: 8px;
-  font-size: 13px;
-  box-shadow: 0 4px 12px rgba(230,193,90,0.3);
-}
-.btn-gold:hover {
-  background: linear-gradient(90deg, var(--gold-soft), var(--gold));
-  transform: scale(1.03);
-}
-
-/* LIST */
-.list-group-item {
-  background: #111;
-  border: 1px solid var(--border-col);
-  color: var(--text);
-  font-size: 13px;
-  border-radius: 5px;
+/* CONTENT */
+.info-content h4 {
   margin-bottom: 5px;
 }
 
-/* PROGRAM CARDS */
-.program-card {
-  border-left: 4px solid var(--gold);
-  background: linear-gradient(145deg,#141414,#1c1c1c);
-}
-.program-card:hover {
-  transform: translateY(-4px);
+.info-content p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 10px;
 }
 
-.program-card.fl { border-color: var(--fl-color); }
-.program-card.mg { border-color: var(--mg-color); }
-.program-card.bg { border-color: var(--bg-color); }
-
-/* DETAIL BOX */
-.detail-box {
-  background: #0a0a0a;
-  border-radius: 6px;
-  padding: 12px;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-/* METRICS */
-.metric-box {
-  background: linear-gradient(145deg,#141414,#1c1c1c);
-  border: 1px solid var(--border-col);
+/* FORMULA BOX */
+.formula-box {
+  background: #f3f4f6;
+  padding: 10px 15px;
   border-radius: 8px;
-  padding: 16px;
-}
-.metric-box .val {
-  font-size: 1.7rem;
-  font-weight: 800;
-  color: var(--gold);
-}
-.metric-box .lbl {
-  font-size: 0.75rem;
-  color: var(--muted);
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: inline-block;
 }
 
-/* TABLE */
-table {
-  font-size: 12px;
-}
-th {
-  color: var(--gold-soft);
-}
-td {
-  color: var(--muted);
+/* BADGES */
+.factor-list {
+  display: flex;
+  gap: 10px;
 }
 
-/* TIMELINE */
-.timeline li {
-  border-left: 2px solid var(--gold);
-  font-size: 12px;
-  color: var(--muted);
-}
-.timeline li::before {
-  color: var(--gold);
+.badge {
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
 }
 
-/* SCROLLBAR */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 4px;
+.badge.fl { background: #fee2e2; color: #dc2626; }
+.badge.mg { background: #dbeafe; color: #2563eb; }
+.badge.bg { background: #dcfce7; color: #16a34a; }
+
+.info-card:hover {
+  transform: translateY(-4px);
+  transition: 0.3s;
 }
 
-/* FOOTER */
-footer {
-  border-top: 1px solid var(--border-col);
-  color: #777;
+/* =========================
+   SECTION CARD
+========================= */
+.section-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 25px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
 }
+
+/* HEADER */
+.section-header h4 {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.section-header p {
+  color: #6b7280;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+#chart {
+  max-height: 300px;
+}
+
+/* =========================
+   PROGRAM CARDS
+========================= */
+.program-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  border: 1px solid #e5e7eb;
+  transition: 0.3s;
+  height: 100%;
+}
+
+.program-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* COLORS */
+.program-card.fl { border-left: 5px solid #ef4444; }
+.program-card.mg { border-left: 5px solid #3b82f6; }
+.program-card.bg { border-left: 5px solid #22c55e; }
+
+.program-card h5 {
+  margin-bottom: 8px;
+}
+
+.program-card p {
+  color: #6b7280;
+  font-size: 14px;
+}
+
   </style>
 </head>
+
 <body>
 
 <!-- NAVBAR -->
+<!--
+<button id="toggleBtn" style="
+background:none;
+border:none;
+color:#4da3ff;
+font-size:20px;
+margin-right:10px;
+">☰</button>
+<button id="themeToggle" class="btn" 
+  style="position:fixed; top:10px; right:20px; z-index:999;">
+  🌙
+</button>  
+-->
+
 <nav class="navbar navbar-expand-lg">
+  
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">⚡ ACEest FITNESS &amp; GYM</a>
+     <a class="navbar-brand" href="#"><b>⚡ACEest FITNESS &amp; GYM</b></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -240,8 +391,10 @@ footer {
 </nav>
 
 <!-- HERO -->
-<div class="text-center py-4" style="background:#111; border-bottom:1px solid #333;">
+<div class="text-center py-4 hero">
   <h1 style="color:var(--gold); font-weight:900; letter-spacing:2px;">ACEest FUNCTIONAL FITNESS SYSTEM</h1>
+  <h6 <b>-By Kolla Naga Manasa-2024tm93519</b></h6>
+  
   <p class="text-secondary mb-0">DevOps Assignment 1 — Flask Web API with Full ACEest Business Logic</p>
   <small class="text-muted">Evolved from 10 desktop versions → modern CI/CD pipeline</small>
 </div>
@@ -250,11 +403,44 @@ footer {
 
   <!-- ===== PROGRAMS SECTION ===== -->
   <section id="programs-section" class="mb-5">
-    <h4 class="section-title">🏋️ Training Programs</h4>
-    <p class="text-secondary small mb-3">Three core programs from the original ACEest system (v1.0). Click any program to see the full workout and nutrition plan.</p>
-    <div class="row g-3" id="program-cards">
-      <!-- Injected by JS -->
+    <section id="programs-section" class="section-card">
+  <div class="section-header">
+    <h4><b>🏋️ Training Program</b>s</h4>
+    <p>Explore structured workout and nutrition plans tailored for your fitness goals.</p>
+  </div>
+
+<section id="programs-section" class="section-card">
+  <div class="row g-4">
+
+    <!-- Fat Loss -->
+    <div class="col-md-4">
+      <div class="program-card fl">
+        <h5>🔥 Fat Loss</h5>
+        <p>Burn fat with high-intensity workouts and calorie deficit diet.</p>
+      </div>
     </div>
+
+    <!-- Muscle Gain -->
+    <div class="col-md-4">
+      <div class="program-card mg">
+        <h5>💪 Muscle Gain</h5>
+        <p>Build strength and size with progressive overload training.</p>
+      </div>
+    </div>
+
+    <!-- Beginner -->
+    <div class="col-md-4">
+      <div class="program-card bg">
+        <h5>🌱 Beginner</h5>
+        <p>Start your fitness journey with balanced workouts and simple plans.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+  <div class="row g-3" id="program-cards"></div>
+</section>
     <!-- Program detail panel -->
     <div class="row mt-3" id="program-detail-panel" style="display:none!important;">
       <div class="col-md-6">
@@ -276,22 +462,43 @@ footer {
     </div>
   </section>
 
-  <!-- ===== CALORIE CALCULATOR ===== -->
-  <section id="calculator-section" class="mb-5">
-    <h4 class="section-title">🔥 Calorie Calculator</h4>
-    <p class="text-secondary small mb-3">
-      Calorie targets derived from the <code>calorie_factor</code> formula used in Aceestver-1.1 through Aceestver-3.2.4:
-      <strong>calories = weight_kg × factor</strong> (FL=22, MG=35, BG=26).
-    </p>
+ <!-- ===== CALORIE CALCULATOR ===== -->
+ <section id="calculator-section" class="info-section">
+  <div class="info-card">
+
+    <div class="info-icon"><b>🔥</b></div>
+
+    <div class="info-content">
+      <h4><b>Calorie Calculation Logic</b></h4>
+
+      <p>
+        Daily calorie targets are calculated using a simple formula:
+      </p>
+
+      <div class="formula-box">
+        calories = weight (kg) × factor
+      </div>
+
+      <div class="factor-list">
+        <span class="badge fl">FL: 22</span>
+        <span class="badge mg">MG: 35</span>
+        <span class="badge bg">BG: 26</span>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
     <div class="card" style="max-width:480px;">
-      <div class="card-header">Calculate Daily Calorie Target</div>
+      <div class="card-header"><b>Calculate Daily Calorie Target</b></div>
       <div class="card-body">
         <div class="mb-3">
-          <label class="form-label">Body Weight (kg)</label>
+          <label class="form-label"><b>Body Weight (kg)</b></label>
           <input id="calc-weight" type="number" min="1" class="form-control" placeholder="e.g. 75">
         </div>
         <div class="mb-3">
-          <label class="form-label">Program</label>
+          <label class="form-label"><b>Program</b></label>
           <select id="calc-program" class="form-select">
             <option value="">— select —</option>
             <option value="FL">Fat Loss (FL)</option>
@@ -319,7 +526,7 @@ footer {
       <div class="col-md-7">
         <div class="card h-100">
           <div class="card-header d-flex justify-content-between align-items-center">
-            Logged Workouts
+            <b>Logged Workouts</b>
             <span class="badge" style="background:var(--gold);color:#000;" id="workout-count">0</span>
           </div>
           <div class="card-body p-2">
@@ -330,15 +537,15 @@ footer {
       </div>
       <div class="col-md-5">
         <div class="card">
-          <div class="card-header">Log a Workout</div>
+          <div class="card-header"><b>Log a Workout</b></div>
           <div class="card-body">
             <form id="workout-form">
               <div class="mb-2">
-                <label class="form-label small">Workout Name</label>
+                <label class="form-label small"><b>Workout Name</b></label>
                 <input id="w-name" class="form-control" placeholder="e.g. Back Squat 5×5" required>
               </div>
               <div class="mb-3">
-                <label class="form-label small">Duration (minutes)</label>
+                <label class="form-label small"><b>Duration (minutes)</b></label>
                 <input id="w-duration" type="number" min="1" class="form-control" placeholder="e.g. 60" required>
               </div>
               <button class="btn btn-gold w-100" type="submit">Log Workout</button>
@@ -349,6 +556,14 @@ footer {
       </div>
     </div>
   </section>
+  <div class="card mt-4">
+  <div class="card-header">
+    <b>📊 Workout Analytics </b>
+  </div>
+  <div class="card-body">
+    <canvas id="chart"></canvas>
+  </div>
+</div>
 
   <!-- ===== MEMBERS ===== -->
   <section id="members-section" class="mb-5">
@@ -357,7 +572,7 @@ footer {
       <div class="col-md-7">
         <div class="card h-100">
           <div class="card-header d-flex justify-content-between align-items-center">
-            Registered Members
+            <b>Registered Members</b>
             <span class="badge" style="background:var(--gold);color:#000;" id="member-count">0</span>
           </div>
           <div class="card-body p-2">
@@ -368,19 +583,19 @@ footer {
       </div>
       <div class="col-md-5">
         <div class="card">
-          <div class="card-header">Register Member</div>
+          <div class="card-header"><b>Register Member</b></div>
           <div class="card-body">
             <form id="member-form">
               <div class="mb-2">
-                <label class="form-label small">Full Name</label>
+                <label class="form-label small"><b>Full Name</b></label>
                 <input id="m-name" class="form-control" placeholder="e.g. Arjun Kumar" required>
               </div>
               <div class="mb-2">
-                <label class="form-label small">Email</label>
+                <label class="form-label small"><b>Email</b></label>
                 <input id="m-email" type="email" class="form-control" placeholder="e.g. arjun@aceest.in" required>
               </div>
               <div class="mb-3">
-                <label class="form-label small">Program (optional)</label>
+                <label class="form-label small"><b>Program (optional)</b></label>
                 <select id="m-program" class="form-select">
                   <option value="">— select program —</option>
                   <option value="Fat Loss (FL)">Fat Loss (FL)</option>
@@ -400,7 +615,36 @@ footer {
   <!-- ===== GYM INFO ===== -->
   <section id="gym-info-section" class="mb-5">
     <h4 class="section-title">🏢 Gym Capacity &amp; Metrics</h4>
-    <p class="text-secondary small mb-3">Facility metrics from Aceestver-1.0 (CAPACITY: 150 Users · AREA: 10,000 sq ft · BREAK-EVEN: 250 Members)</p>
+    <div class="row g-4">
+
+  <div class="col-md-4">
+    <div class="metric-card">
+      <div class="metric-icon">👥</div>
+      <div class="metric-value">150</div>
+      <div class="metric-label">Max Capacity</div>
+      <small class="metric-sub">users</small>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="metric-card">
+      <div class="metric-icon">📏</div>
+      <div class="metric-value">10,000</div>
+      <div class="metric-label">Gym Area</div>
+      <small class="metric-sub">sq ft</small>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="metric-card">
+      <div class="metric-icon">💰</div>
+      <div class="metric-value">250</div>
+      <div class="metric-label">Break-even</div>
+      <small class="metric-sub">members</small>
+    </div>
+  </div>
+
+</div>
     <div class="row g-3" id="gym-info-row">
       <!-- Injected by JS -->
     </div>
@@ -458,6 +702,10 @@ footer {
   </section>
 
 </div>
+
+<footer class="text-center py-3 mt-2">
+  <small><b>-By Kolla Naga Manasa-2024tm93519</b></small>
+</footer>
 
 <footer class="text-center py-3 mt-2">
   <small>ACEest Fitness &amp; Gym · DevOps Assignment 1 · BITS Pilani WILP · S2-25</small>
@@ -625,31 +873,55 @@ footer {
     }
   });
 
-  // ── GYM INFO ──────────────────────────────────────────────────────────────
-  async function loadGymInfo() {
-    const res  = await fetch('/gym-info');
-    const data = await res.json();
-    const row  = document.getElementById('gym-info-row');
-    const items = [
-      { val: data.capacity,          lbl: 'Max Capacity',      unit: 'users'   },
-      { val: data.area_sqft.toLocaleString(), lbl: 'Gym Area', unit: 'sq ft'   },
-      { val: data.breakeven_members, lbl: 'Break-Even Target',  unit: 'members' },
-    ];
-    row.innerHTML = items.map(i => `
-      <div class="col-md-4">
-        <div class="metric-box">
-          <div class="val">${i.val}</div>
-          <div class="lbl">${i.lbl}</div>
-          <div class="text-secondary small">${i.unit}</div>
-        </div>
-      </div>`).join('');
-  }
 
   // ── INIT ──────────────────────────────────────────────────────────────────
   loadPrograms();
   loadWorkouts();
   loadMembers();
-  loadGymInfo();
+  async function loadGymInfo() {
+  const res = await fetch('/gym-info');
+  const data = await res.json();
+
+  document.getElementById('capacity').innerText = data.capacity;
+  document.getElementById('area').innerText = data.area_sqft.toLocaleString();
+  document.getElementById('breakeven').innerText = data.breakeven_members;
+}
+</script>
+<script>
+const ctx = document.getElementById('chart');
+
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['Mon','Tue','Wed','Thu','Fri'],
+    datasets: [{
+      label: 'Calories Burned',
+      data: [300,500,400,600,700],
+      backgroundColor: '#4da3ff'
+    }]
+  },
+  options: {
+  plugins: {
+    legend: { 
+      labels: { 
+        color: getComputedStyle(document.body).getPropertyValue('--text') 
+      } 
+    }
+  },
+  scales: {
+    x: { 
+      ticks: { 
+        color: getComputedStyle(document.body).getPropertyValue('--text') 
+      } 
+    },
+    y: { 
+      ticks: { 
+        color: getComputedStyle(document.body).getPropertyValue('--text') 
+      } 
+    }
+  }
+}
+});
 </script>
 </body>
 </html>
