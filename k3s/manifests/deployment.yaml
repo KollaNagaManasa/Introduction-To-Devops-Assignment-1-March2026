@@ -15,6 +15,6 @@ spec:
       containers:
       - name: aceest
         image: 095523581136.dkr.ecr.ap-south-2.amazonaws.com/aceest-app
-        imagePullPolicy: Never
+        imagePullPolicy: Always
         ports:
         - containerPort: 5000
