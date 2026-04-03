@@ -16,7 +16,7 @@ spec:
         - name: ecr-secret
       containers:
       - name: aceest
-        image: kollanagamanasa/aceest-app:v2
+        image: kollanagamanasa/aceest-app:v3
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
