@@ -822,10 +822,10 @@ async function calculateCalories() {
 
   try {
     const response = await fetch('/calories', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ weight_kg: weight, program_code: program }),
-    });
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ weight_kg: weight, program_code: program }),
+});;
 
     const data = await response.json();
 
