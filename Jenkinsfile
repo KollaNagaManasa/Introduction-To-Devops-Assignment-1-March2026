@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git 'introduction-to-devops-assignment-1-march2026'
+                git 'https://github.com/KollaNagaManasa/introduction-to-devops-assignment-1-march2026.git'
             }
         }
 
@@ -16,8 +16,8 @@ pipeline {
 
         stage('Deploy K8s') {
             steps {
-                sh 'kubectl apply -f deployment.yaml'
-                sh 'kubectl apply -f service.yaml'
+                sh 'sudo k3s kubectl apply -f deployment.yaml'
+                sh 'sudo k3s kubectl apply -f service.yaml'
             }
         }
     }
