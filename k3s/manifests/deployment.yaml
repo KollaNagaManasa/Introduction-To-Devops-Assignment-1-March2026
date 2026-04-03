@@ -12,6 +12,8 @@ spec:
       labels:
         app: aceest
     spec:
+     imagePullSecrets:
+        - name: ecr-secret
       containers:
       - name: aceest
         image: 095523581136.dkr.ecr.ap-south-2.amazonaws.com/aceest-app
